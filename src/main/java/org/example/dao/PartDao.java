@@ -8,6 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import javax.persistence.EntityGraph;
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
@@ -89,13 +91,14 @@ public class PartDao {
         return part;
     }
 
+
     @Transactional
     public List<Part> getAllParts() {
         List<Part> Parts = Collections.emptyList();
         Transaction transaction = null;
         try (Session session = Config.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Query<Part> query = session.createQuery("from Part p join fetch p.carSet");
+            Query<Part> query = session.createQuery("from Part p left join fetch p.carSet");
             Parts = query.list();
             transaction.commit();
         } catch (Exception e) {
@@ -121,4 +124,6 @@ public class PartDao {
             }
         }
     }
+
+
 }

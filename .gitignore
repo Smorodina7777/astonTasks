@@ -26,6 +26,7 @@ target/
 *.class
 *.tmp
 *.log
+*.xml
 *.yarn.lock
 Thumbs.db
 *.DS_Store

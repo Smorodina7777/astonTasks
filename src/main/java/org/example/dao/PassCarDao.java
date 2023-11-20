@@ -25,7 +25,6 @@ public class PassCarDao {
             PassengerCar.setModel(model);
             PassengerCar.setYear(year);
             PassengerCar.setBodyType(bodyType);
-//            PassengerCar.setPartList(partList);
             session.save(PassengerCar);
             transaction.commit();
         } catch (Exception e) {
@@ -75,7 +74,7 @@ public class PassCarDao {
         Transaction transaction = null;
         try (Session session = Config.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Query<PassengerCar> query = session.createQuery("from PassengerCar");
+            Query<PassengerCar> query = session.createQuery("from PassengerCar p join fetch p.owner");
             PassengerCars = query.list();
             transaction.commit();
         } catch (Exception e) {

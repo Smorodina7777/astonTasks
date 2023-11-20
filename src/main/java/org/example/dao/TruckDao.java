@@ -78,7 +78,7 @@ public class TruckDao {
         Transaction transaction = null;
         try (Session session = Config.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Query<Truck> query = session.createQuery("from Truck");
+            Query<Truck> query = session.createQuery("from Truck t join fetch t.owner");
             Trucks = query.list();
             transaction.commit();
         } catch (Exception e) {

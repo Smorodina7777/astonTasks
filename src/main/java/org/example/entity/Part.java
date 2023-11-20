@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Data
 @ToString
 @AllArgsConstructor
@@ -25,4 +26,5 @@ public class Part {
             joinColumns=  @JoinColumn(name="part_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="car_id", referencedColumnName="id") )
     private Set<Car> carSet = new HashSet<>();
+
 }
